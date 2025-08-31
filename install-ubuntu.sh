@@ -135,11 +135,11 @@ info "npm: $(npm --version)"
 
 # Clonar ou verificar projeto
 log "📁 Configurando projeto..."
-PROJECT_DIR="$HOME/sistema-escalas"
+PROJECT_DIR="$HOME/escalasunbuto"
 
 if [ ! -d "$PROJECT_DIR" ]; then
     warn "Diretório do projeto não encontrado. Você precisa:"
-    warn "1. Clonar o repositório: git clone https://github.com/Emerchan23/escalasunbuto.git $PROJECT_DIR"
+    warn "1. Clonar o repositório: git clone https://github.com/Emerchan23/escalasunbuto.git"
     warn "2. Ou fazer download e extrair para: $PROJECT_DIR"
     warn "3. Executar: cd $PROJECT_DIR && ./install-ubuntu.sh"
     
@@ -224,7 +224,7 @@ fi
 log "🎉 Instalação concluída!"
 log "📋 Próximos passos:"
 info "1. Se necessário, faça logout/login para aplicar permissões do Docker"
-info "2. Navegar para o diretório do projeto: cd $PROJECT_DIR/projeto-ai"
+info "2. Navegar para o diretório do projeto: cd $PROJECT_DIR && cd projeto-ai"
 info "3. Iniciar o sistema: npm run docker:up"
 info "4. Acessar: http://localhost:4000"
 info "5. Comandos úteis (executar em $PROJECT_DIR/projeto-ai):"
@@ -234,7 +234,7 @@ info "   - npm run docker:down   # Parar containers"
 info "   - npm run docker:logs   # Ver logs"
 info "   - npm run health-check  # Verificar saúde"
 info "6. Para desinstalar completamente o sistema:"
-info "   - cd escalasunbuto"
+info "   - cd $PROJECT_DIR"
 info "   - chmod +x cleanup-ubuntu.sh"
 info "   - ./cleanup-ubuntu.sh"
 
