@@ -14,14 +14,16 @@
 #### Opção 1: Script de Instalação Completa
 
 ```bash
-# 1. Fazer download do projeto
-wget https://github.com/seu-usuario/sistema-escalas/archive/main.zip
-unzip main.zip
-cd sistema-escalas-main
+# 1. Clonar o repositório
+git clone https://github.com/Emerchan23/escalasunbuto.git
+cd escalasunbuto
 
 # 2. Executar instalação automática
 chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
+
+# 3. Aguardar conclusão da instalação
+# O sistema estará disponível em: http://localhost:4000
 ```
 
 #### Opção 2: Instalação Manual das Dependências
@@ -72,10 +74,12 @@ npm run setup:auto
 ### 📁 Estrutura de Instalação
 
 ```
-$HOME/sistema-escalas/
+$HOME/escalasunbuto/
 ├── install-ubuntu.sh          # Script de instalação
 ├── docker-compose-escalas.yml # Configuração Docker
 ├── Dockerfile-escalas         # Imagem Docker
+├── README.md                  # Documentação principal
+├── INSTALACAO-UBUNTU.md       # Guia de instalação
 ├── data/                      # Banco de dados
 │   └── schedule.db
 └── projeto-ai/                # Código fonte
@@ -220,8 +224,8 @@ docker system df
 
 ```bash
 # Atualizar sistema
-cd sistema-escalas
-git pull origin main  # Se usando Git
+cd escalasunbuto
+git pull origin main
 
 # Reconstruir containers
 cd projeto-ai
@@ -242,7 +246,7 @@ docker rmi escalas-sistema-escalas:latest
 
 # Remover projeto
 cd ~
-rm -rf sistema-escalas
+rm -rf escalasunbuto
 
 # Opcional: Remover Docker (se não usar para outros projetos)
 sudo apt remove docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin

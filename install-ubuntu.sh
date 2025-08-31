@@ -139,8 +139,8 @@ PROJECT_DIR="$HOME/sistema-escalas"
 
 if [ ! -d "$PROJECT_DIR" ]; then
     warn "Diretório do projeto não encontrado. Você precisa:"
-    warn "1. Fazer download do projeto"
-    warn "2. Extrair para: $PROJECT_DIR"
+    warn "1. Clonar o repositório: git clone https://github.com/Emerchan23/escalasunbuto.git $PROJECT_DIR"
+    warn "2. Ou fazer download e extrair para: $PROJECT_DIR"
     warn "3. Executar: cd $PROJECT_DIR && ./install-ubuntu.sh"
     
     read -p "Deseja continuar mesmo assim? (y/N): " -n 1 -r
@@ -151,6 +151,11 @@ if [ ! -d "$PROJECT_DIR" ]; then
 else
     cd "$PROJECT_DIR"
     log "📂 Entrando no diretório: $PROJECT_DIR"
+    
+    # Verificar estrutura do projeto
+    if [ ! -d "projeto-ai" ]; then
+        error "❌ Diretório projeto-ai não encontrado! Certifique-se de ter clonado o repositório corretamente: git clone https://github.com/Emerchan23/escalasunbuto.git"
+    fi
 fi
 
 # Configurar permissões
