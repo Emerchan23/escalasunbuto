@@ -1,0 +1,39 @@
+# Dockerfile-escalas - Sistema de Escala de Sobreaviso
+FROM node:20-alpine
+
+# Definir diretório de trabalho
+WORKDIR /app
+
+# Instalar dependências do sistema necessárias para SQLite
+RUN apk add --no-cache python3 make g++ sqlite libc6-compat
+
+# Copiar arquivos de dependências
+COPY package*.json ./
+
+# Instalar dependências automaticamente
+RUN npm install --legacy-peer-deps
+
+# Copiar todo o código fonte
+COPY . ./
+
+# Recompilar better-sqlite3 para a arquitetura do contêiner
+RUN npm rebuild better-sqlite3
+
+# Build do Next.js
+RUN npm run build
+
+# Criar diretório para dados persistentes
+RUN mkdir -p /app/data
+
+# Expor porta
+EXPOSE 4000
+
+# Definir variáveis de ambiente
+ENV NODE_ENV=production
+ENV PORT=4000
+ENV NEXT_PUBLIC_API_URL=http://localhost:4000/api
+ENV INTERNAL_API_URL=http://localhost:4000/api
+ENV DB_PATH=/app/data/schedule.db
+
+# Inicializar banco de dados automaticamente e iniciar servidor
+CMD ["sh", "-c", "node scripts/init-database.js && npm run start:escalas"]

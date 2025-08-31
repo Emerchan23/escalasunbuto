@@ -1,0 +1,373 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.6% 91.4%;
+    --input: 214.3 31.6% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.4% 17.3%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.4% 17.3%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.4% 17.3%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.4% 17.3%;
+    --input: 217.2 32.4% 17.3%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Base print styles (for actual printing via window.print()) */
+@media print {
+  @page {
+    margin: 0.1cm; /* Margens da página ainda mais reduzidas */
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-size: 7.5pt; /* Fonte base ajustada para impressão */
+    -webkit-print-color-adjust: exact; /* Força impressão de cores de fundo */
+    print-color-adjust: exact; /* Propriedade padrão */
+  }
+
+  /* Esconder elementos não necessários para impressão */
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:block {
+    display: block !important;
+  }
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+  .print\:m-0 {
+    margin: 0 !important;
+  }
+
+  /* Ajustar o contêiner principal para escala */
+  .print-scale-container {
+    overflow: visible; /* Permitir overflow para evitar cortes inesperados */
+    padding: 0.2cm; /* Pequeno padding interno */
+    box-sizing: border-box; /* Inclui padding na largura/altura */
+  }
+
+  /* Ajustar cabeçalho para impressão */
+  .print-header-container {
+    margin-bottom: 0.15rem !important; /* Margem inferior reduzida */
+    display: flex; /* Habilita flexbox para logo e texto lado a lado */
+    flex-direction: column; /* Alterado para coluna */
+    align-items: center;   /* Centraliza itens horizontalmente */
+    width: 100%; /* Garante que o contêiner ocupe toda a largura */
+  }
+  .print-header-text { /* Contêiner para os textos do cabeçalho */
+    text-align: center; /* Alterado para centralizado */
+    flex-grow: 1;
+    margin-left: 0; /* Removido o margin-left, pois não é mais necessário em layout de coluna */
+  }
+  .print-header {
+    font-size: 0.85rem !important; /* Título principal ajustado */
+    margin-bottom: 0.05rem !important; /* Margem entre linhas do cabeçalho */
+    color: black !important; /* Garante que o cabeçalho seja preto */
+    line-height: 1.1; /* Ajusta a altura da linha */
+  }
+  .print-header.sub-header { /* Segundo título (departamento) */
+    font-size: 0.75rem !important;
+    margin-bottom: 0.08rem !important;
+  }
+  .print-header.system-title { /* Título do sistema */
+    font-size: 0.65rem !important;
+    margin-top: 0.05rem !important;
+  }
+
+  /* Estilos do logo para impressão */
+  .print-logo {
+    max-width: 70px !important; /* Logo ajustado */
+    height: auto !important;
+    flex-shrink: 0; /* Impede que o logo encolha */
+  }
+
+  /* Ajustar estilos específicos do calendário para impressão */
+  .components-schedule-calendar-root {
+    font-size: 0.5rem; /* Fonte ajustada */
+    gap: 0.04rem; /* Reduzir ainda mais o espaçamento entre as células */
+  }
+  .components-schedule-calendar-root > div {
+    border: 0.5px solid #ddd !important; /* Borda mais fina */
+    min-height: 3.2rem; /* Altura mínima das células menor */
+    padding: 0.02rem; /* Padding mínimo */
+  }
+  .components-schedule-calendar-root .text-sm {
+    font-size: 0.45rem; /* Número do dia ajustado */
+  }
+  .components-schedule-calendar-root .text-xs {
+    font-size: 0.38rem; /* Texto de horas/nome/observação ajustado */
+  }
+  .components-schedule-calendar-root .line-clamp-2 {
+    -webkit-line-clamp: 1; /* Limita observação a 1 linha */
+  }
+  .components-schedule-calendar-root .w-2 {
+    width: 0.12rem; /* Ponto de cor menor */
+    height: 0.12rem;
+  }
+  .components-schedule-calendar-root .w-6 {
+    width: 0.6rem; /* Círculo de "hoje" menor */
+    height: 0.6rem;
+    font-size: 0.4rem; /* Ajusta fonte dentro do círculo */
+  }
+  .components-schedule-calendar-root .px-1\.5 {
+    padding-left: 0.02rem;
+    padding-right: 0.02rem;
+  }
+  .components-schedule-calendar-root .py-0\.5 {
+    padding-top: 0.01rem;
+    padding-bottom: 0.01rem;
+  }
+  /* Garante que as tags de cor do profissional sejam impressas */
+  .components-schedule-calendar-root .rounded-full.text-white {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .components-schedule-calendar-root .w-2.h-2.rounded-full {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ajustar estilos específicos do resumo para impressão */
+  .components-schedule-summary-root {
+    font-size: 0.6rem; /* Aumentado de 0.4rem para 0.6rem */
+    margin-top: 0.1rem !important;
+  }
+  .components-schedule-summary-root .text-xl {
+    font-size: 0.9rem !important; /* Aumentado de 0.7rem para 0.9rem */
+    color: black !important;
+  }
+  .components-schedule-summary-root .p-2 {
+    padding: 0.04rem; /* Aumentado de 0.02rem para 0.04rem */
+    border: 0.5px solid #ddd !important;
+    background-color: #fcfcfc !important;
+    color: black !important;
+  }
+  .components-schedule-summary-root .w-4 {
+    width: 0.35rem; /* Aumentado de 0.25rem para 0.35rem */
+    height: 0.35rem; /* Aumentado de 0.25rem para 0.35rem */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .components-schedule-summary-root .gap-4 {
+    gap: 0.08rem; /* Aumentado de 0.05rem para 0.08rem */
+  }
+  .components-schedule-summary-root .text-primary {
+    color: #000080 !important;
+    font-weight: bold !important; /* Adicionado para deixar as horas em negrito */
+    font-size: 0.7rem !important; /* Adicionado tamanho específico para as horas */
+  }
+  .components-schedule-summary-root .text-sm {
+    font-size: 0.65rem !important; /* Aumentado o tamanho do nome do profissional */
+  }
+
+  /* Rodapé para impressão */
+  .print-footer {
+    font-size: 0.45rem !important; /* Fonte menor para o rodapé */
+    margin-top: 0.1rem !important; /* Margem superior reduzida */
+    color: black !important; /* Garante que o texto seja preto */
+  }
+}
+
+/* Styles for in-browser print preview */
+/* Wrapper para o corpo quando em modo de pré-visualização */
+.print-preview-active-body-wrapper {
+  height: 100vh;
+  overflow: hidden; /* Esconde a barra de rolagem principal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f0f0f0; /* Fundo cinza claro para simular a área fora da página */
+}
+
+/* Contêiner da página A4 na pré-visualização */
+.print-preview-active-body-wrapper .print-scale-container-preview {
+  padding: 0.1cm; /* Margem interna da "página" */
+  box-sizing: border-box;
+  width: 21cm; /* Largura A4 */
+  min-height: 29.7cm; /* Altura mínima A4 */
+  overflow-y: auto; /* Permite rolagem dentro da "página" se o conteúdo for maior que A4 */
+  background-color: white;
+  border: 1px solid #ccc; /* Borda visual para a "página" */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave para efeito de página */
+  margin: 1rem auto; /* Centraliza a "página" na pré-visualização */
+  flex-shrink: 0; /* Impede que a "página" encolha */
+}
+
+/* Duplicar estilos de impressão para o modo de pré-visualização */
+.print-preview-active-body-wrapper .print-header-container-preview {
+  margin-bottom: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.print-preview-active-body-wrapper .print-header-text-preview {
+  text-align: center;
+  flex-grow: 1;
+  margin-left: 0;
+}
+.print-preview-active-body-wrapper .print-header-preview {
+  font-size: 0.85rem;
+  margin-bottom: 0.05rem;
+  color: black;
+  line-height: 1.1;
+}
+.print-preview-active-body-wrapper .print-header-preview.sub-header-preview {
+  font-size: 0.75rem;
+  margin-bottom: 0.08rem;
+}
+.print-preview-active-body-wrapper .print-header-preview.system-title-preview {
+  font-size: 0.65rem;
+  margin-top: 0.05rem;
+}
+
+.print-preview-active-body-wrapper .print-logo-preview {
+  max-width: 70px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview { /* Updated class */
+  font-size: 0.5rem;
+  gap: 0.04rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview > div { /* Updated class */
+  border: 0.5px solid #ddd;
+  min-height: 4rem;
+  padding: 0.02rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .text-sm {
+  font-size: 0.6rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .text-xs {
+  font-size: 0.5rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .line-clamp-2 {
+  -webkit-line-clamp: 1;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .w-2 {
+  width: 0.12rem;
+  height: 0.12rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .w-6 {
+  width: 0.8rem;
+  height: 0.8rem;
+  font-size: 0.5rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .px-1\.5 {
+  padding-left: 0.02rem;
+  padding-right: 0.02rem;
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .py-0\.5 {
+  padding-top: 0.01rem;
+  padding-bottom: 0.01rem;
+}
+/* No print-color-adjust needed for screen preview */
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .rounded-full.text-white {
+  /* No print-color-adjust needed for screen preview */
+}
+.print-preview-active-body-wrapper .components-schedule-calendar-root-preview .w-2.h-2.rounded-full {
+  /* No print-color-adjust needed for screen preview */
+}
+
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview {
+  font-size: 0.6rem; /* Aumentado de 0.4rem para 0.6rem */
+  margin-top: 0.1rem;
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .text-xl {
+  font-size: 1.1rem; /* Aumentado de 0.9rem para 1.1rem */
+  color: black;
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .p-2 {
+  padding: 0.04rem; /* Aumentado de 0.02rem para 0.04rem */
+  border: 0.5px solid #ddd;
+  background-color: #fcfcfc;
+  color: black;
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .w-4 {
+  width: 0.45rem; /* Aumentado de 0.35rem para 0.45rem */
+  height: 0.45rem; /* Aumentado de 0.35rem para 0.45rem */
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .gap-4 {
+  gap: 0.08rem; /* Aumentado de 0.05rem para 0.08rem */
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .text-primary {
+  color: #000080;
+  font-weight: bold !important; /* Adicionado para deixar as horas em negrito */
+  font-size: 0.8rem !important; /* Adicionado tamanho específico para as horas */
+}
+.print-preview-active-body-wrapper .components-schedule-summary-root-preview .text-sm {
+  font-size: 0.75rem !important; /* Aumentado o tamanho do nome do profissional */
+}
+
+.print-preview-active-body-wrapper .print-footer-preview {
+  font-size: 0.6rem;
+  margin-top: 0.1rem;
+  color: black;
+}
