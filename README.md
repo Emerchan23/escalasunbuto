@@ -142,10 +142,27 @@ docker system prune -f
 npm run setup:auto
 ```
 
+## 🗑️ Desinstalação
+
+### Desinstalação Completa
+```bash
+cd escalasunbuto
+chmod +x cleanup-ubuntu.sh
+./cleanup-ubuntu.sh
+```
+
+### Desinstalação Rápida
+```bash
+cd escalasunbuto/projeto-ai
+npm run docker:down
+cd $HOME && rm -rf escalasunbuto/
+```
+
 ## 📚 Documentação
 
 - [Instalação Ubuntu](INSTALACAO-UBUNTU.md) - Guia completo
 - [Instalação Automática](INSTALACAO-AUTOMATICA.md) - Windows/Docker
+- [Limpeza Ubuntu](LIMPEZA-UBUNTU.md) - Guia de limpeza completa
 
 ## 🤝 Contribuição
 

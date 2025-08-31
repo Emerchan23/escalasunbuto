@@ -246,19 +246,42 @@ npm run docker:up
 
 ### 🗑️ Desinstalação
 
+#### Desinstalação Completa (Recomendado)
 ```bash
-# Parar e remover containers
-cd projeto-ai
+# Usar o script de limpeza automática
+cd escalasunbuto
+chmod +x cleanup-ubuntu.sh
+./cleanup-ubuntu.sh
+```
+
+#### Desinstalação Manual
+```bash
+# Parar containers
+cd escalasunbuto/projeto-ai
 npm run docker:down
 
-# Remover imagens
-docker rmi escalas-sistema-escalas:latest
+# Remover containers e imagens
+docker system prune -a -f --volumes
 
 # Remover projeto
-cd ~
-rm -rf escalasunbuto
+cd $HOME
+rm -rf escalasunbuto/
+```
 
-# Opcional: Remover Docker (se não usar para outros projetos)
+#### Desinstalação Rápida
+```bash
+# Apenas parar containers
+cd escalasunbuto/projeto-ai
+npm run docker:down
+
+# Remover projeto
+cd $HOME
+rm -rf escalasunbuto/
+```
+
+#### Desinstalação Completa do Docker (Opcional)
+```bash
+# Remover Docker completamente (se não usar para outros projetos)
 sudo apt remove docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo rm -rf /var/lib/docker
 sudo rm -rf /var/lib/containerd
