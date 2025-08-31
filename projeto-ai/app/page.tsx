@@ -497,9 +497,9 @@ export default function Home() {
           <footer className="py-2 text-center text-xs text-muted-foreground print-footer-preview"> {/* New class */}
             <p>{config.company_name}</p>
           </footer>
-          <div className="text-center mt-4">
-            <Button onClick={handleExitPrintPreview}>Voltar</Button>
-            <Button onClick={() => window.print()} className="ml-2">Imprimir Agora</Button>
+          <div className="text-center mt-4 print-buttons-container">
+            <Button onClick={handleExitPrintPreview} className="print-hide-button">Voltar</Button>
+            <Button onClick={() => window.print()} className="ml-2 print-hide-button">Imprimir Agora</Button>
           </div>
         </div>
       )}

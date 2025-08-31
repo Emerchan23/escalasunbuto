@@ -231,6 +231,16 @@
     margin-top: 0.1rem !important; /* Margem superior reduzida */
     color: black !important; /* Garante que o texto seja preto */
   }
+
+  /* Ocultar botões de navegação durante a impressão */
+  .print-buttons-container {
+    display: none !important;
+  }
+  
+  /* Ocultar especificamente botões com a classe print-hide-button */
+  .print-hide-button {
+    display: none !important;
+  }
 }
 
 /* Styles for in-browser print preview */
