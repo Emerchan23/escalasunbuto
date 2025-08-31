@@ -23,7 +23,14 @@ chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
 
 # 3. Aguardar conclusão da instalação
-# O sistema estará disponível em: http://localhost:4000
+# 4. Navegar para o diretório do projeto
+cd projeto-ai
+
+# 5. Iniciar o sistema
+npm run docker:up
+
+# 6. Acessar o sistema
+# http://localhost:4000
 ```
 
 #### Opção 2: Instalação Manual das Dependências
@@ -110,8 +117,11 @@ docker images                                          # Imagens disponíveis
 
 ### 📦 Scripts NPM Disponíveis
 
+**IMPORTANTE**: Todos os comandos npm devem ser executados no diretório `projeto-ai`
+
 ```bash
-cd projeto-ai
+# Primeiro, navegar para o diretório correto
+cd escalasunbuto/projeto-ai
 
 # Instalação e configuração
 npm run setup:auto      # Instalação automática completa

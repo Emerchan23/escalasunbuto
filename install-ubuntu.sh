@@ -156,6 +156,18 @@ else
     if [ ! -d "projeto-ai" ]; then
         error "❌ Diretório projeto-ai não encontrado! Certifique-se de ter clonado o repositório corretamente: git clone https://github.com/Emerchan23/escalasunbuto.git"
     fi
+    
+    # Navegar para o diretório do projeto
+    cd projeto-ai
+    log "📂 Entrando no diretório: $(pwd)"
+    
+    # Verificar se package.json existe
+    if [ ! -f "package.json" ]; then
+        error "❌ Arquivo package.json não encontrado no diretório projeto-ai!"
+    fi
+    
+    # Voltar para o diretório principal
+    cd "$PROJECT_DIR"
 fi
 
 # Configurar permissões
@@ -174,6 +186,12 @@ if [ -f "$PROJECT_DIR/projeto-ai/package.json" ]; then
     log "📦 Instalando dependências do projeto..."
     cd "$PROJECT_DIR/projeto-ai"
     npm install --legacy-peer-deps
+    log "✅ Dependências instaladas com sucesso!"
+    
+    log "🚀 Configurando sistema..."
+    npm run setup:auto
+    log "✅ Sistema configurado com sucesso!"
+    
     cd "$PROJECT_DIR"
 fi
 
@@ -206,9 +224,10 @@ fi
 log "🎉 Instalação concluída!"
 log "📋 Próximos passos:"
 info "1. Se necessário, faça logout/login para aplicar permissões do Docker"
-info "2. Acesse: http://localhost:4000"
-info "3. Para gerenciar: cd $PROJECT_DIR/projeto-ai"
-info "4. Comandos úteis:"
+info "2. Navegar para o diretório do projeto: cd $PROJECT_DIR/projeto-ai"
+info "3. Iniciar o sistema: npm run docker:up"
+info "4. Acessar: http://localhost:4000"
+info "5. Comandos úteis (executar em $PROJECT_DIR/projeto-ai):"
 info "   - npm run setup:auto    # Reinstalar sistema"
 info "   - npm run docker:up     # Iniciar containers"
 info "   - npm run docker:down   # Parar containers"

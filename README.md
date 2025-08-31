@@ -22,7 +22,13 @@ cd escalasunbuto
 chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
 
-# 3. Acessar o sistema
+# 3. Navegar para o diretório do projeto
+cd projeto-ai
+
+# 4. Iniciar o sistema
+npm run docker:up
+
+# 5. Acessar o sistema
 # http://localhost:4000
 ```
 
@@ -55,7 +61,12 @@ escalasunbuto/
 
 ## 🛠️ Comandos Úteis
 
+**IMPORTANTE**: Execute todos os comandos npm no diretório `projeto-ai`
+
 ```bash
+# Navegar para o diretório correto
+cd escalasunbuto/projeto-ai
+
 # Gerenciar containers
 npm run docker:up       # Iniciar sistema
 npm run docker:down     # Parar sistema
@@ -159,9 +170,17 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 🚀 Deploy Rápido
 
 ```bash
+# 1. Clonar repositório
 git clone https://github.com/Emerchan23/escalasunbuto.git
 cd escalasunbuto
+
+# 2. Executar instalação automática
+chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
+
+# 3. Navegar para o projeto e iniciar
+cd projeto-ai
+npm run docker:up
 ```
 
 **🎉 Sistema rodando em http://localhost:4000**
